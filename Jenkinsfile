@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  tools {
-    maven 'maven-3.9.5' 
-  }
   stages {
     stage('Cloning Git') {
       steps {
@@ -16,11 +13,9 @@ pipeline {
     }
     stage('Compile') {
        steps {
-        sh '''
-        mvn compile
-        ls
-        pwd
-        ''' 
+        withMaven {
+          sh "mvn compile"
+        } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
        }
     }
     stage('Test') {
