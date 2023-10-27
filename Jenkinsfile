@@ -1,5 +1,9 @@
 pipeline {
   agent any
+  environment {
+    registry = "chrisley/spring-petclinic-cleygraf"
+    registryCredential = 'dockerhub'
+}
   tools { maven '3.9.5' }
   stages {
     stage('Cloning Git') {
@@ -19,16 +23,18 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh "mvn test"      }
+        sh "mvn test"
+      }
     }
-    stage('Building Image') {
+    stage('Building Container Image') {
       steps{
+        sh "mvn clean install"
         script {
           dockerImage = docker.build registry + ":latest"
         }
       }
     }
-    stage('Deploy Image') {
+    stage('Push Container Image') {
       steps{
          script {
             docker.withRegistry( '', registryCredential ) {
@@ -37,7 +43,7 @@ pipeline {
         }
       }
     }
-    stage('Remove Unused docker image') {
+    stage('Remove Unused local docker image') {
       steps{
         sh "docker rmi $registry:latest"
       }
