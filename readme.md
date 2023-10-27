@@ -43,7 +43,7 @@ By default, the `mvn` command is not available for the pipelines. To fix this, w
 
 ### Create a project and run the pipeline
 
-Go back to the "Dashboard" and choose "New item" to configure your first project. Enter a name, select "Pipeline" and click "OK". On the next page, go to "Pipeline" and select "Pipeline script from SCM". Select "Git" as "SCM". Enter the "Repository URL": `https://github.com/cleygraf/spring-petclinic-cleygraf` and change the "Branch Specifier" to `*/main`. That's all we need to change. Click "Save".
+Go back to the "Dashboard" and choose "New item" to configure your first project. Enter a name, select "Pipeline" and click "OK". On the next page, go to "Pipeline" and select "Pipeline script from SCM". Select "Git" as "SCM". Enter the "Repository URL": `https://github.com/cleygraf/spring-petclinic-cleygraf` and change the "Branch Specifier" to `*/main`. That's all we need to change. Click "Save". As result the Jenkins that is part of the repository is used for the pipeline.
 
 Go back to the "Dashboard" and select the "spring-petclinic-cleygraf" project we have created before. Click on "Build Now" on the left side of the screen. The pipeline will kick off. 
 
@@ -52,3 +52,15 @@ Go back to the "Dashboard" and select the "spring-petclinic-cleygraf" project we
 Once the pipeline has finished successfully, you can start the resulting container with `docker run -p 8888:8888 chrisley/spring-petclinic-cleygraf -d`. The _Spring PetClinic Sample Application_ is now available: http://DOCKER_HOST_IP:8080 (Change "DOCKER_HOST_IP" to the hostname or ip of your docker host).
 
 Use `docker pull chrisley/spring-petclinic-cleygraf` to just pull the image for inspection.
+
+
+#### Addendum
+
+#### Additions to the _Spring PetClinic Sample Application_
+
+I have added the following files:
+
+- `Jenkinsfile`: The pipeline definition
+- `README.md`: This file
+- `jenkins/Dockerfile`: The docker file for the custom Jenkins container
+- `jenkins/docker-compose.yml`: File to use with `docker compose` to start two containers and the required ressources.
