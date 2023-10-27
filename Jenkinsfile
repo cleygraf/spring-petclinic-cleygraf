@@ -1,7 +1,5 @@
 pipeline {
-  agent {
-    label 'jenkins-agent'
-  }
+  agent any
   environment {
     registry = "chrisley/spring-petclinic-cleygraf"
     registryCredential = 'dockerhub'
