@@ -14,20 +14,12 @@ pipeline {
     }
     stage('Compile') {
        steps {
-        withMaven {
-          sh "mvn compile"
-        } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
+        sh "mvn compile"
        }
     }
     stage('Test') {
       steps {
-        sh '''
-        mvn clean install
-        ls
-        pwd
-        ''' 
-        //if the code is compiled, we test and package it in its distributable format; run IT and store in local repository
-      }
+        sh "mvn test"      }
     }
     stage('Building Image') {
       steps{
