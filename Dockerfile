@@ -6,4 +6,4 @@ EXPOSE 8888
 COPY target/spring-petclinic-3.1.0-SNAPSHOT.jar /usr/bin/spring-petclinic-cleygraf.jar
 
 # run application with this command line 
-ENTRYPOINT ["java","-jar","/usr/bin/spring-petclinic-cleygraf.jar","--server.port=888"]
+ENTRYPOINT ["java","-jar","/usr/bin/spring-petclinic-cleygraf.jar","--server.port=8888"]
