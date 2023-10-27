@@ -3,6 +3,16 @@ pipeline {
     label 'jenkins-agent'
 }
   stages {
+    stage('Cloning Git') {
+      steps {
+                git(
+                    url: "https://github.com/cleygraf/spring-petclinic-cleygraf.git",
+                    branch: "main",
+                    changelog: true,
+                    poll: true
+                )
+      }
+    }
     stage('Compile') {
        steps {
          sh 'mvn compile' //only compilation of the code
