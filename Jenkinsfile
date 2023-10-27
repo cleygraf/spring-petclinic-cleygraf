@@ -5,7 +5,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/cleygraf/spring-petclinic-cleygraf.git'
+        git 'https://github.com/cleygraf/spring-petclinic-cleygraf'
       }
     }
     stage('Compile') {
