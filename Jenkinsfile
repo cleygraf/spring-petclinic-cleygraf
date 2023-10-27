@@ -1,6 +1,6 @@
 pipeline {
   agent { 
-    laber 'jenkins-agent'
+    label 'jenkins-agent'
 }
   tools {
     maven 'Maven 3.3.9'
