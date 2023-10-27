@@ -15,7 +15,9 @@ pipeline {
     }
     stage('Compile') {
        steps {
-         sh 'mvn compile' //only compilation of the code
+        withMaven {
+          sh "mvn clean verify"
+        } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
        }
     }
     stage('Test') {
