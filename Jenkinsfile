@@ -2,14 +2,10 @@ pipeline {
   agent { 
     label 'jenkins-agent'
 }
-  tools {
-    maven 'Maven 3.3.9'
-    jdk 'jdk8'
-  } 
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/talitz/spring-petclinic-jenkins-pipeline.git'
+        git 'https://github.com/cleygraf/spring-petclinic-cleygraf'
       }
     }
     stage('Compile') {
