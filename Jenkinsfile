@@ -1,12 +1,14 @@
 pipeline {
-  agent any
+  agent {
+    label 'jenkins-agent'
+  }
   environment {
     registry = "chrisley/spring-petclinic-cleygraf"
     registryCredential = 'dockerhub'
 }
   tools { maven '3.9.5' }
   stages {
-    stage('Cloning Git') {
+    stage('Cloning Git Repo') {
       steps {
                 git(
                     url: "https://github.com/cleygraf/spring-petclinic-cleygraf.git",
