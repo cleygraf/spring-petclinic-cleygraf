@@ -36,7 +36,7 @@ jobs:
           cache: maven
       - name: Build with Maven Wrapper
         run: ./mvnw -B package
-        - name: Run JFrog CLI
+      - name: Run JFrog CLI
         run: |
           # Ping the server
           jf rt ping
