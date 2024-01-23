@@ -35,7 +35,7 @@ jobs:
           distribution: 'adopt'
           cache: maven
       - name: Build with Maven Wrapper
-        run: mvn compile
+        run: jf mvn compile
       - name: Run JFrog CLI
         run: |
           # Ping the server
