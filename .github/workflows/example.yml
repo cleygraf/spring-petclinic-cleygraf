@@ -1,4 +1,4 @@
-name: "JFrog CLI Example"
+name: "JFrog Build of PetClinic"
 on:
   # Runs on pushes targeting the default branch
   push:
@@ -38,6 +38,8 @@ jobs:
         run: |
           jf mvn-config
           jf mvn compile
+          jf mvn test
+          jf mvn clean install
       - name: Run JFrog CLI
         run: |
           # Ping the server
