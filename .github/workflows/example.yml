@@ -34,12 +34,14 @@ jobs:
           java-version: ${{matrix.java}}
           distribution: 'adopt'
           cache: maven
-      - name: Build with Maven Wrapper
-        run: |
-          jf mvn-config
-          jf mvn compile
-          jf mvn test
-          jf mvn clean install
+      - name: Configure Maven
+        run: jf mvn-config
+      - name: Compile with Maven
+        run: jf mvn compile
+      - name: Test with Maven
+        run: jf mvn test
+      - name: Install with Maven
+        run: jf mvn clean install
       - name: Run JFrog CLI
         run: |
           # Ping the server
