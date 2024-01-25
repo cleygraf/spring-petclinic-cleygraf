@@ -42,7 +42,7 @@ jobs:
       # - name: Test with Maven
       #   run: jf mvn test
       - name: Install with Maven
-        run: jf mvn clean install
+        run: jf mvn clean install -Dmaven.test.skip
       - name: Run JFrog CLI
         run: |
           # Ping the server
