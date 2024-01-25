@@ -39,8 +39,8 @@ jobs:
         run: jf mvn-config
       - name: Compile with Maven
         run: jf mvn compile
-      - name: Test with Maven
-        run: jf mvn test
+      # - name: Test with Maven
+      #   run: jf mvn test
       - name: Install with Maven
         run: jf mvn clean install
       - name: Run JFrog CLI
