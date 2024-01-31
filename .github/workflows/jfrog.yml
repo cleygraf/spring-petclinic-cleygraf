@@ -42,7 +42,11 @@ jobs:
           jf rt ping
       - name: Configure Maven
         run: |
-          jf mvn-config --repo-deploy-releases=3rd-maven-local-releases --repo-deploy-snapshots=3rd-maven-local-snapshots --repo-resolve-releases=1st-maven --repo-resolve-snapshots=1st-maven
+          echo "Deploy-Release-Repo: ${{ vars.MVN_DEV_REPO_DEPLOY_RELEASES }}"
+          echo "Deploy-Snapshots-Repo: ${{ vars.MVN_DEV_REPO_DEPLOY_SNAPSHOTS }}"
+          echo "Resolv-Release-Repo: ${{ vars.MVN_DEV_REPO_RESOLVE_RELEASES }}"
+          echo "Resolv-Snapshots-Repo: ${{ vars.MVN_DEV_REPO_RESOLVE_SNAPSHOTS }}"
+          jf mvn-config --repo-deploy-releases=${{ vars.MVN_DEV_REPO_DEPLOY_RELEASES }} --repo-deploy-snapshots=${{ vars.MVN_DEV_REPO_DEPLOY_SNAPSHOTS }} --repo-resolve-releases=${{ vars.MVN_DEV_REPO_RESOLVE_RELEASES }} --repo-resolve-snapshots=${{ vars.MVN_DEV_REPO_RESOLVE_SNAPSHOTS }}
       - name: Compile with Maven
         run: jf mvn compile
       - name: Test with Maven
