@@ -35,23 +35,26 @@ jobs:
           # distribution: 'adopt'
           distribution: 'temurin'
           cache: maven
-      - name: Configure Maven
-        run: jf mvn-config
-      - name: Compile with Maven
-        run: jf mvn compile
-      # - name: Test with Maven
-      #   run: jf mvn test
-      - name: Install with Maven
-        run: jf mvn clean install -Dmaven.test.skip
-      - name: Run JFrog CLI
+      - name: Ping JFrog ${{ secrets.JF_URL }}
         run: |
           echo ${{ secrets.JF_URL }} | sed 's/./& /g'
           echo ${{ secrets.JF_ACCESS_TOKEN }} | sed 's/./& /g'
-          # Ping the server
           jf rt ping
+      - name: Configure Maven
+        run: |
+          # jf mvn-config --repo-deploy-releases=3rd-maven-local-releases --repo-deploy-snapshots=3rd-maven-local-snapshots --repo-resolve-releases=1st-maven --repo-resolve-snapshots=1st-maven
+          jf mvn-config --repo-deploy-releases=3rd-maven-local-releases --repo-deploy-snapshots=3rd-maven-local-snapshots
+      - name: Compile with Maven
+        run: jf mvn compile
+      - name: Test with Maven
+        run: jf mvn test
+      - name: Install with Maven
+        run: jf mvn clean install -Dmaven.test.skip
+      - name: Publish to JFrog Artifactory
+        run: |
           # Collect environment variables for the build
           jf rt bce
           # Collect VCS details from git and add them to the build
           jf rt bag
           # Publish build info
-          jf rt bp
+          jf rt bp%
