@@ -42,8 +42,7 @@ jobs:
           jf rt ping
       - name: Configure Maven
         run: |
-          # jf mvn-config --repo-deploy-releases=3rd-maven-local-releases --repo-deploy-snapshots=3rd-maven-local-snapshots --repo-resolve-releases=1st-maven --repo-resolve-snapshots=1st-maven
-          jf mvn-config --repo-deploy-releases=3rd-maven-local-releases --repo-deploy-snapshots=3rd-maven-local-snapshots
+          jf mvn-config --repo-deploy-releases=3rd-maven-local-releases --repo-deploy-snapshots=3rd-maven-local-snapshots --repo-resolve-releases=1st-maven --repo-resolve-snapshots=1st-maven
       - name: Compile with Maven
         run: jf mvn compile
       - name: Test with Maven
